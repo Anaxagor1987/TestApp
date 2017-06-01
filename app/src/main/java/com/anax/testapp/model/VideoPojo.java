@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author yuriiostrovskyi on 5/31/17.
  */
-public class VideoBuilder {
+public class VideoPojo {
 
 	@SerializedName("title")
 	private String mTitle;
@@ -21,7 +21,7 @@ public class VideoBuilder {
 	@SerializedName("sources")
 	private List<String> mSources;
 
-	public Video build() {
+	Video build() {
 		return new Video(mTitle, mStudio, mThumbnailBig, mSources);
 	}
 }

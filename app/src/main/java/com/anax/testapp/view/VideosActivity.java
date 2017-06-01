@@ -17,10 +17,10 @@ import com.anax.testapp.view.adapter.VideosAdapter;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements VideosView,
+public class VideosActivity extends AppCompatActivity implements VideosView,
 		DialogInterface.OnClickListener, VideosAdapter.OnVideoClickListener {
 
-	private static final String TAG = "MainActivity";
+	private static final String TAG = "VideosActivity";
 
 	private AlertDialog mRetryDialog;
 	private ProgressDialog mProgressDialog;

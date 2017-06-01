@@ -3,8 +3,6 @@ package com.anax.testapp.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.anax.testapp.networking.VideosApi;
-
 import java.util.List;
 
 public class Video implements Parcelable {

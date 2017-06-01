@@ -1,8 +1,6 @@
-package com.anax.testapp.networking;
+package com.anax.testapp.model;
 
-import com.anax.testapp.model.VideoBuilder;
 import com.anax.testapp.model.serialization.VideosDeserializer;
-import com.anax.testapp.model.Video;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -30,7 +28,7 @@ public class VideosApi {
 	public VideosApi() {
 
 		Gson gson = new GsonBuilder()
-				.registerTypeHierarchyAdapter(VideoBuilder[].class, new VideosDeserializer())
+				.registerTypeHierarchyAdapter(VideoPojo[].class, new VideosDeserializer())
 				.create();
 
 		mVideosInterface = new Retrofit.Builder()
@@ -48,16 +46,16 @@ public class VideosApi {
 				.subscribeOn(Schedulers.computation());
 	}
 
-	private static final Func1<VideoBuilder[], Observable<VideoBuilder>> SPLIT = new Func1<VideoBuilder[], Observable<VideoBuilder>>() {
+	private static final Func1<VideoPojo[], Observable<VideoPojo>> SPLIT = new Func1<VideoPojo[], Observable<VideoPojo>>() {
 		@Override
-		public Observable<VideoBuilder> call(VideoBuilder[] videoBuilders) {
+		public Observable<VideoPojo> call(VideoPojo[] videoBuilders) {
 			return Observable.from(videoBuilders);
 		}
 	};
 
-	private static Func1<VideoBuilder, Video> BUILD = new Func1<VideoBuilder, Video>() {
+	private static Func1<VideoPojo, Video> BUILD = new Func1<VideoPojo, Video>() {
 		@Override
-		public Video call(VideoBuilder videoBuilder) {
+		public Video call(VideoPojo videoBuilder) {
 			return videoBuilder.build();
 		}
 	};

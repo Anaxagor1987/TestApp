@@ -3,7 +3,7 @@ package com.anax.testapp.presenter;
 import android.util.Log;
 
 import com.anax.testapp.model.Video;
-import com.anax.testapp.networking.VideosApi;
+import com.anax.testapp.model.VideosApi;
 import com.anax.testapp.view.VideosView;
 
 import java.util.List;
