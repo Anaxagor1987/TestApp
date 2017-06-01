@@ -51,14 +51,4 @@ public class Video implements Parcelable {
 		dest.writeString(thumbnailUrl);
 		dest.writeStringList(sources);
 	}
-
-	@Override
-	public String toString() {
-		return "Video{" +
-				"title='" + title + '\'' +
-				", studio='" + studio + '\'' +
-				", thumbnailUrl='" + thumbnailUrl + '\'' +
-				", sources=" + sources +
-				'}';
-	}
 }

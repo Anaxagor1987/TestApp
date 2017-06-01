@@ -25,8 +25,6 @@ public class VideosApi {
 	public static final String BASE_URL =
 			"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/";
 
-//	private final static VideosApi sInstance = new VideosApi();
-
 	private VideosInterface mVideosInterface;
 
 	public VideosApi() {

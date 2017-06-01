@@ -19,7 +19,6 @@ import rx.subscriptions.Subscriptions;
 /**
  * @author yuriiostrovskyi on 5/31/17.
  */
-
 public class VideosPresenter extends Subscriber<List<Video>> {
 
 	private static final String TAG = "VideosPresenter";
@@ -79,6 +78,7 @@ public class VideosPresenter extends Subscriber<List<Video>> {
 	}
 
 	public void onRetryClicked() {
+		mVideosView.showProgress();
 		loadVideos(mVideosApi);
 	}
 
@@ -87,16 +87,13 @@ public class VideosPresenter extends Subscriber<List<Video>> {
 		mApiSubscription.unsubscribe();
 		mApiSubscription = api.getVideos()
 				.observeOn(AndroidSchedulers.mainThread())
-//				.filter(FILTER)
+				.filter(new Func1<Video, Boolean>() {
+					@Override
+					public Boolean call(Video video) {
+						return !video.sources.isEmpty();
+					}
+				})
 				.toList()
 				.subscribe(this);
 	}
-
-	private static Func1<Video, Boolean> FILTER = new Func1<Video, Boolean>() {
-
-		@Override
-		public Boolean call(Video video) {
-			return !video.sources.isEmpty();
-		}
-	};
 }

@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements VideosView,
 
 	@Override
 	public void call(List<Video> videos) {
-		setItems(videos);
+		showVideoItems(videos);
 	}
 
 	@Override
@@ -90,18 +90,18 @@ public class MainActivity extends AppCompatActivity implements VideosView,
 		mVideosPresenter.onVideoClicked(video);
 	}
 
+	@Override
 	public void showError() {
 		Log.d(TAG, "showError:");
-		mProgressDialog.dismiss();
-		if (!mRetryDialog.isShowing()) {
-			mRetryDialog.show();
-		}
+		showRetryDialog();
 	}
 
-	private void setItems(List<Video> videos) {
-		Log.d(TAG, "setItems: " + videos);
+	private void showVideoItems(List<Video> videos) {
+		Log.d(TAG, "showVideoItems: " + videos);
 		mAdapter.setItems(videos);
-		dismissProgressDialog();
+		mRetryDialog.dismiss();
+		mProgressDialog.dismiss();
+		mRecyclerView.animate().alpha(1);
 	}
 
 	private void showProgressDialog() {
@@ -110,9 +110,10 @@ public class MainActivity extends AppCompatActivity implements VideosView,
 		mRecyclerView.animate().alpha(0);
 	}
 
-	private void dismissProgressDialog() {
+	private void showRetryDialog() {
+		mRetryDialog.show();
 		mProgressDialog.dismiss();
-		mRecyclerView.animate().alpha(1);
+		mRecyclerView.animate().alpha(0);
 	}
 
 	private AlertDialog createAlertDialog() {
